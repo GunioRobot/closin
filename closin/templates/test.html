@@ -10,12 +10,12 @@
 
 
 	<div id="map_canvas" style="width: 360px; height: 445px"></div>
-	
+
 	<script type="text/javascript" charset="utf-8">
 		var map = null;
 		var infowindow = null;
 		var markers = [];
-		
+
 		function addMarker(lat, lon, name, infowindow) {
 			var marker = new google.maps.Marker({
 				position: new google.maps.LatLng(lat, lon),
@@ -28,7 +28,7 @@
 			});
 			markers.push(marker);
 		}
-		
+
 			function map_initialize() {
 				var latlng = new google.maps.LatLng(41.641184, -0.894032);
 				var myOptions = {
@@ -42,7 +42,7 @@
 				infowindow = new google.maps.InfoWindow({
 					content: "foobar"
 				});
-				
+
 				$.ajax({ url: '/fetch?service=bus',
 					dataType: 'json',
 					success: function(data) {
@@ -64,15 +64,15 @@
 						}
 					}
 				});
-				
+
 			}
-			
+
 			function removeMarkers() {
 				while(markers.length > 0) {
 					markers.pop().setMap(null);
 				}
 			}
-		
+
 		$(document).ready(function() {
 			map_initialize();
 		});

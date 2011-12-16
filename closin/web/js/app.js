@@ -37,11 +37,11 @@ function showMap(cat) {
 	$('#map-wrapper').show();
 	$('#detail').hide();
 	$(".service-type").html(cat);
-	
+
 	if(!map) {
 		initMap();
 	}
-	
+
 	$.ajax({ url: '/fetch?service='+cat,
 		dataType: 'json',
 		success: function(data) {
@@ -69,9 +69,9 @@ function showDetail(id, service, title, subtitle, lat, lon) {
 		$('#how-to-go').attr('href', 'http://maps.google.com/maps?saddr='+coordenates.latitude+','+coordenates.longitude+'&daddr='+lat+','+lon+'&dirflg=w');
 		$('#how-to-go').show();
 	}
-	
+
 	insertValues = { "id": id, "name": title, "latitude": lat, "longitude": lon, "service": service}
-	
+
 	$.ajax({ url: '/point?service='+service+'&id='+id,
 		dataType: 'json',
 		success: function(data) {
@@ -109,7 +109,7 @@ function showHome() {
 function initMap() {
 	var center = new google.maps.LatLng(41.641184, -0.894032);
 	var zoom = 16;
-	
+
 	var disableDefaultUI = true;
 	var navigationControl = false;
 	if(!jQuery.browser.mobile){
@@ -125,8 +125,8 @@ function initMap() {
 		disableDefaultUI: disableDefaultUI,
 		mapTypeId: google.maps.MapTypeId.ROADMAP
 	};
-	
-	
+
+
 	map = new google.maps.Map(document.getElementById("map-container"), myOptions);
 
 	if(navigator.geolocation) {
@@ -136,7 +136,7 @@ function initMap() {
 				position.coords.longitude);
 			map.setCenter(location);
 			coordenates = position.coords;
-				
+
 			var marker = new google.maps.Marker({
 				position: location,
 				map: map,
